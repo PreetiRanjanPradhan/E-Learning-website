@@ -9,6 +9,7 @@ public class user {
         this.lastname = lastname;
         this.email = email;
         this.password = password;
+        //testingUltimate
     }
 
     public user() {

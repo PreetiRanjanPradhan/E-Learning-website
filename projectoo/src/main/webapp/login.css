@@ -6,8 +6,8 @@
 
 }
 body{
-    /*Basics Huani*/
-    background-image: url("imageRefs/loginBack.jpg");
+
+    background-image: url("/imageRefs/loginBack.jpg");
     height: 100vh;
     width: 100%;
     background-position: center;

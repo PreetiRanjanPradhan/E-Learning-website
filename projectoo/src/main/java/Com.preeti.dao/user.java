@@ -1,3 +1,5 @@
+package Com.preeti.dao;
+
 public class user {
     private String firstname;
     private String lastname;

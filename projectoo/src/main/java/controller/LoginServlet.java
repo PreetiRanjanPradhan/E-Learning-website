@@ -1,6 +1,9 @@
 package controller;
 
 import java.io.IOException;
+
+//import org.apache.jasper.tagplugins.jstl.core.Out;
+
 import dao.UserDao;
 import dao.UserDaoImpl;
 import jakarta.servlet.ServletException;
@@ -24,9 +27,9 @@ public class LoginServlet extends HttpServlet {
         if (userDao.isValidUser(email, password)) {
             HttpSession session = request.getSession();
             session.setAttribute("username", email);
-            response.sendRedirect("welcome.jsp");
+            //response.sendRedirect("");
         } else {
-            response.sendRedirect("login.jsp?error=1");
+            response.sendRedirect("login.html?error=1");
             // Log error details instead of using System.out.println
         }
     }

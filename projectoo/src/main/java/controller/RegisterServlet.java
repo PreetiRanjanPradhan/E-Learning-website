@@ -31,13 +31,13 @@ public class RegisterServlet extends HttpServlet {
 
         try {
             if (userDao.addUser(user)) {
-                response.sendRedirect("login.jsp?registration=success");
+                response.sendRedirect("login.html?registration=success");
             } else {
-                response.sendRedirect("register.jsp?error=1");
+                response.sendRedirect("register.html?error=1");
             }
         } catch (Exception e) {
             e.printStackTrace(); // Consider logging the error
-            response.sendRedirect("register.jsp?error=2");
+            response.sendRedirect("register.html?error=2");
         }
     }
 }

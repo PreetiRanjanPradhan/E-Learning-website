@@ -1,19 +1,19 @@
-package Com.preeti.dao;
+package dao;
 
-public class user {
+public class User {
     private String firstname;
     private String lastname;
     private String email;
-    private char password;
+    private String password;
 
-    public user(String firstname, String lastname, String email, char password) {
+    public User(String firstname, String lastname, String email, String password) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
     }
 
-    public user() {
+    public User() {
         super();
     }
 
@@ -41,11 +41,11 @@ public class user {
         this.email = email;
     }
 
-    public char getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(char password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 }

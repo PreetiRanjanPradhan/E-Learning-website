@@ -5,12 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="loginRegister.css">
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f4f4f4;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            height: 100vh;-->
+<!--        }-->
+<!--        .container {-->
+<!--            background-color: #fff;-->
+<!--            padding: 20px;-->
+<!--            border-radius: 8px;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--            width: 100%;-->
+<!--            max-width: 400px;-->
+<!--            box-sizing: border-box;-->
+<!--        }-->
+<!--        .form-title {-->
+<!--            font-size: 24px;-->
+<!--            margin-bottom: 20px;-->
+<!--            text-align: center;-->
+<!--        }-->
+<!--        .input-group {-->
+<!--            position: relative;-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+<!--        .input-group i {-->
+<!--            position: absolute;-->
+<!--            left: 10px;-->
+<!--            top: 50%;-->
+<!--            transform: translateY(-50%);-->
+<!--            color: #aaa;-->
+<!--        }-->
+<!--        .input-group input {-->
+<!--            width: 100%;-->
+<!--            padding: 10px 10px 10px 40px;-->
+<!--            border: 1px solid #ddd;-->
+<!--            border-radius: 4px;-->
+<!--            font-size: 16px;-->
+<!--        }-->
+<!--        .input-group label {-->
+<!--            position: absolute;-->
+<!--            top: 10px;-->
+<!--            left: 40px;-->
+<!--            color: #aaa;-->
+<!--            font-size: 14px;-->
+<!--            transition: 0.3s;-->
+<!--        }-->
+<!--        .input-group input:focus + label,-->
+<!--        .input-group input:not(:placeholder-shown) + label {-->
+<!--            top: -10px;-->
+<!--            left: 0;-->
+<!--            color: #4CAF50;-->
+<!--            font-size: 12px;-->
+<!--        }-->
+<!--        .btn {-->
+<!--            width: 100%;-->
+<!--            padding: 10px;-->
+<!--            border: none;-->
+<!--            background-color: #4CAF50;-->
+<!--            color: #fff;-->
+<!--            font-size: 16px;-->
+<!--            border-radius: 4px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        .btn:hover {-->
+<!--            background-color: #45a049;-->
+<!--        }-->
+<!--        .links {-->
+<!--            text-align: center;-->
+<!--            margin-top: 20px;-->
+<!--        }-->
+<!--        .links a {-->
+<!--            color: #4CAF50;-->
+<!--            text-decoration: none;-->
+<!--            font-weight: bold;-->
+<!--        }-->
+<!--        .links a:hover {-->
+<!--            text-decoration: underline;-->
+<!--        }-->
+<!--    </style>-->
 </head>
 <body>
 <div class="container" id="signup">
     <h1 class="form-title">Register</h1>
-    <form method="post" action="register.php">
+    <form method="post" action="register">
         <div class="input-group">
             <i class="fas fa-user"></i>
             <input type="text" name="fName" id="fName" placeholder="First Name" required>
@@ -31,17 +115,11 @@
             <input type="password" name="password" id="password" placeholder="Password" required>
             <label for="password">Password</label>
         </div>
-        <input type="submit" class="btn" value="Sign Up" name="signUp">
+        <input type="submit" class="btn" value="Sign Up">
     </form>
-    <p class="or">----------or----------</p>
-    <div class="icons">
-        <i class="fab fa-google"></i>
-        <i class="fab fa-facebook"></i>
-    </div>
-    <div class="links">
-        <p>Already Have an Account?</p>
-        <a href="login.html"><button id="signInButton">Sign In</button></a>
-    </div>
+    <p class="links">
+        Already have an account? <a href="login.html">Sign In</a>
+    </p>
 </div>
 </body>
 </html>

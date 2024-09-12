@@ -31,6 +31,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             response.sendRedirect("login.html?error=1");
             // Log error details instead of using System.out.println
+//            git
         }
     }
 }

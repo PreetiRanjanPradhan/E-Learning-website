@@ -17,7 +17,7 @@
 
     <%
         } else {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("Login.jsp");
         }
     %>
 

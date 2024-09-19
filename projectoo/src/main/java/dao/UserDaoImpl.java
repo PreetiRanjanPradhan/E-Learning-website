@@ -1,30 +1,23 @@
 package dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import util.DBUtil;
-import dao.User;
-import dao.UserDao;
 
 public class UserDaoImpl implements UserDao {
     
     @Override
     public boolean addUser(User user) {
-        String query = "INSERT INTO users (firstname, lastname, email, password) VALUES (?, ?, ?, ?)";
-
+        String query = "{CALL add_user(?, ?, ?)}";
         try (Connection connection = DBUtil.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-
-            preparedStatement.setString(1, user.getFirstname());
-            preparedStatement.setString(2, user.getLastname());
-            preparedStatement.setString(3, user.getEmail());
-            preparedStatement.setString(4, user.getPassword());
-
-            int rowsAffected = preparedStatement.executeUpdate();
-
+             CallableStatement callableStatement = connection.prepareCall(query)) {
+            callableStatement.setString(1, user.getUsername());
+            callableStatement.setString(2, user.getEmail());
+            callableStatement.setString(3, user.getPassword());
+            int rowsAffected = callableStatement.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -33,17 +26,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean isValidUser(String email, String password) {
-        String query = "SELECT * FROM users WHERE email = ? AND password = ?";
-        
+    public boolean isValidUser(String username, String password) {
+        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
         try (Connection connection = DBUtil.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-
-            preparedStatement.setString(1, email);
+            preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
-
             ResultSet resultSet = preparedStatement.executeQuery();
-
             return resultSet.next();
         } catch (SQLException e) {
             e.printStackTrace();

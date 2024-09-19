@@ -1,6 +1,10 @@
 package dao;
 
+import dao.User;
+
+//@SuppressWarnings("unused")
 public interface UserDao {
-    boolean isValidUser(String email, String password);
-    boolean addUser(User user);
+
+	boolean addUser(User user);
+	boolean isValidUser(String username, String password);
 }

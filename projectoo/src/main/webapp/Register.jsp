@@ -11,7 +11,7 @@
 </div>
     <div class="container">
         <h1>Register</h1>
-        <form action="RegisterServlet" method="post">
+        <form action="Register_Servlet" method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required><br>
             <label for="email">Email:</label>
@@ -23,7 +23,7 @@
     
         <p><a href="index.html">Back to Home</a></p>
     
-        <%-- Display error message if registration fails --%>
+        
         <% String error = request.getParameter("error");
            if (error != null && error.equals("1")) { %>
             <p style="color: red;">Registration failed. Please try again.</p>

@@ -1,5 +1,4 @@
 package dao;
-
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,15 +10,22 @@ public class UserDaoImpl implements UserDao {
     
     @Override
     public boolean addUser(User user) {
-        String query = "{CALL add_user(?, ?, ?)}";
+        String query = "{CALL ADJ_Project.add_user(?, ?, ?)}";
         try (Connection connection = DBUtil.getConnection();
              CallableStatement callableStatement = connection.prepareCall(query)) {
             callableStatement.setString(1, user.getUsername());
             callableStatement.setString(2, user.getEmail());
             callableStatement.setString(3, user.getPassword());
             int rowsAffected = callableStatement.executeUpdate();
-            return rowsAffected > 0;
+            if (rowsAffected > 0) {
+                System.out.println("User added successfully");
+                return true;
+            } else {
+                System.out.println("No rows affected when adding user");
+                return false;
+            }
         } catch (SQLException e) {
+            System.err.println("SQL Exception when adding user: " + e.getMessage());
             e.printStackTrace();
             return false;
         }

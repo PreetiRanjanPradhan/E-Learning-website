@@ -13,33 +13,33 @@ import dao.UserDaoImpl;
 @WebServlet("/Register_Servlet")
 public class Register_Servlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
-    public Register_Servlet() {
-        super();
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().append("Served at: ").append(request.getContextPath());
-    }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
+        
+        System.out.println("Attempting to register user: " + username);
 
         User user = new User();
         user.setUsername(username);
         user.setEmail(email);
         user.setPassword(password);
-
-        UserDao userDao = new UserDaoImpl(); // Instantiate UserDaoImpl
-        if (userDao.addUser(user)) {
-            response.sendRedirect("Login.jsp?registration=success");
-        } else {
-            response.sendRedirect("Register.jsp?error=1");
-            System.out.println("Registration failed: Could not add user");
+        
+        UserDao userDao = new UserDaoImpl();
+        try {
+            if (userDao.addUser(user)) {
+                System.out.println("User registered successfully: " + username);
+                response.sendRedirect("Login.jsp?registration=success");
+            } else {
+                System.out.println("Registration failed for user: " + username);
+                response.sendRedirect("Register.jsp?error=1");
+            }
+        } catch (Exception e) {
+            System.err.println("Exception during registration for user " + username + ": " + e.getMessage());
+            e.printStackTrace();
+            response.sendRedirect("Register.jsp?error=2");
         }
     }
 }

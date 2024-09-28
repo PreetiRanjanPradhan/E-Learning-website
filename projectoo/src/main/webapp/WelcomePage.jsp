@@ -1,3 +1,4 @@
+/*CHANGED*/
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -219,5 +220,7 @@ if (session1 != null && session1.getAttribute("username") != null) {
     response.sendRedirect("Login.jsp");
 }
 %>
+
+<!-- vggggggggggg -->
 </body>
 </html>

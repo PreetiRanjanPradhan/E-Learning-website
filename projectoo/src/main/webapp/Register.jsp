@@ -1,33 +1,39 @@
+/*CHANGED*/
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+        <title>Register Page</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-<div>
-</div>
-    <div class="container">
-        <h1>Register</h1>
-        <form action="RegisterServlet" method="post">
+<body class="register">
+    <div class="register-container">
+        <h1>Create an Account</h1>
+        <form action="Register_Servlet" method="post">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br>
+            <input type="text" id="username" name="username" required>
+
             <label for="email">Email:</label>
-            <input type="text" id="email" name="email" required><br>   
+            <input type="email" id="email" name="email" required>
+
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br>
+            <input type="password" id="password" name="password" required>
+
             <button type="submit">Register</button>
         </form>
+
+        <p>Already have an account? <a href="Login.jsp">Login here</a></p>
+          <p><a href="index.html">Back to Home</a></p>
     
-        <p><a href="index.html">Back to Home</a></p>
-    
-        <%-- Display error message if registration fails --%>
+        
         <% String error = request.getParameter("error");
            if (error != null && error.equals("1")) { %>
             <p style="color: red;">Registration failed. Please try again.</p>
         <% } %>
     </div>
+    
+      
+   
 </body>
 </html>

@@ -28,13 +28,13 @@ public class Login_Servlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        UserDao userDao = new UserDaoImpl(); // Instantiate UserDaoImpl
+        UserDao userDao = new UserDaoImpl();
         if (userDao.isValidUser(username, password)) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
-            response.sendRedirect("welcomePage.jsp");
+            response.sendRedirect("WelcomePage.jsp");
         } else {
-            response.sendRedirect("Login.jsp?error=1");
+        	response.sendRedirect("Login.jsp?error=1");
             System.out.println("Login failed: Invalid username or password");
         }
     }

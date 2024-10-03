@@ -19,6 +19,7 @@ public class Register_Servlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
+        String recovery= request.getParameter("recovery");
         
         System.out.println("Attempting to register user: " + username);
 
@@ -26,6 +27,7 @@ public class Register_Servlet extends HttpServlet {
         user.setUsername(username);
         user.setEmail(email);
         user.setPassword(password);
+        user.setRecovery(recovery);
         
         UserDao userDao = new UserDaoImpl();
         try {

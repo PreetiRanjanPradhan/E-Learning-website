@@ -117,19 +117,19 @@ if (session1 != null && session1.getAttribute("username") != null) {
     <script>
         const quizData = [
             {
-                question: "What is the capital of France?",
-                options: ["London", "Berlin", "Paris", "Madrid"],
-                correct: 2
-            },
-            {
-                question: "Which planet is known as the Red Planet?",
-                options: ["Mars", "Venus", "Jupiter", "Saturn"],
+                question: "Who is the domain coordinator of ST domain",
+                options: ["rakesh sir", "Raj Kumar sir", "dean maam", "saneev sir"],
                 correct: 0
             },
             {
-                question: "What is the largest mammal in the world?",
-                options: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
-                correct: 1
+                question: "dean of SOET",
+                options: ["sujata maam", "supriya maam", "dipti mam", "padhi sir"],
+                correct: 0
+            },
+            {
+                question: "Do Rakesh sir give us good marks?",
+                options: ["yes", "ofcourse", "not", "dekhte hain"],
+                correct: 3
             }
         ];
 

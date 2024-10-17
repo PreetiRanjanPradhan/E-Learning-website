@@ -22,6 +22,8 @@
         </form>
 
         <p>Don't have an account? <a href="Register.jsp">Register here</a></p>
+        <br>
+        <p>Forgot your password? <a href="forgot.jsp">Click here</a></p>
         
         <p><a href="index.html">Back to Home</a></p>
 

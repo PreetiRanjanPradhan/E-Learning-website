@@ -4,8 +4,17 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private String recovery;
 
-    public String getUsername() {
+    public String getRecovery() {
+		return recovery;
+	}
+
+	public void setRecovery(String recovery) {
+		this.recovery = recovery;
+	}
+
+	public String getUsername() {
         return username;
     }
 

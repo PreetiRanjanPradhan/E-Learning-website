@@ -69,6 +69,18 @@ public class UserDaoImpl implements UserDao {
             return false;
         }
     }
+
+	@Override
+	public boolean updateUserType(String username, String userType) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public User getUserByUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
     
 }

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <welcome-file-list>
+    <!-- <welcome-file>index.html</welcome-file>
+    
+    <welcome-file>Register.jsp</welcome-file>
+    <welcome-file>dashboard.jsp</welcome-file>
+    -->
+    
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <!-- 
+  <servlet>
+    <description></description>
+    <display-name>TakeQuizServlet</display-name>
+    <servlet-name>TakeQuizServlet</servlet-name>
+    <servlet-class>controller.TakeQuizServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TakeQuizServlet</servlet-name>
+    <url-pattern>/TakeQuizServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateQuizServlet</display-name>
+    <servlet-name>CreateQuizServlet</servlet-name>
+    <servlet-class>controller.CreateQuizServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateQuizServlet</servlet-name>
+    <url-pattern>/CreateQuizServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserTypeServlet</display-name>
+    <servlet-name>UserTypeServlet</servlet-name>
+    <servlet-class>controller.UserTypeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserTypeServlet</servlet-name>
+    <url-pattern>/UserTypeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DashboardServlet</display-name>
+    <servlet-name>DashboardServlet</servlet-name>
+    <servlet-class>controller.DashboardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DashboardServlet</servlet-name>
+    <url-pattern>/DashboardServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>QuizCodeServlet</display-name>
+    <servlet-name>QuizCodeServlet</servlet-name>
+    <servlet-class>controller.QuizCodeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QuizCodeServlet</servlet-name>
+    <url-pattern>/QuizCodeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>resultServlet</display-name>
+    <servlet-name>resultServlet</servlet-name>
+    <servlet-class>controller.resultServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>resultServlet</servlet-name>
+    <url-pattern>/resultServlet</url-pattern>
+  </servlet-mapping>
+
+  
+   -->
+   
+   </web-app>
+  

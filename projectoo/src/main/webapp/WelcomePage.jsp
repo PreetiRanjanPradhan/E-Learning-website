@@ -1,223 +1,76 @@
-<%@ page import="jakarta.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Platform - Welcome</title>
+    <title>Welcome to QuizMaster</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #333;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
         }
         .container {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
+            background-color: white;
             padding: 2rem;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            width: 90%;
-            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
+            max-width: 80%;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease-out forwards;
         }
         h1 {
-            color: #4a4a4a;
+            color: #333;
             margin-bottom: 1rem;
-            font-size: 2.5rem;
-        }
-        h3 {
-            color: #6a11cb;
-            margin: 1rem 0;
         }
         p {
-            margin-bottom: 1rem;
-            line-height: 1.6;
+            color: #666;
+            margin-bottom: 2rem;
         }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            background-color: #6a11cb;
+        .start-button {
+            background-color: #4CAF50;
             color: white;
+            border: none;
+            padding: 10px 20px;
             font-size: 1rem;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-            text-decoration: none;
+            transition: background-color 0.3s, transform 0.1s;
         }
-        .btn:hover {
-            background-color: #5a0cb1;
+        .start-button:hover {
+            background-color: #45a049;
         }
-        .btn:active {
+        .start-button:active {
             transform: scale(0.98);
         }
-        #quizContainer {
-            display: none;
-            margin-top: 2rem;
-        }
-        #question {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-        #options {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        #options button {
-            margin: 5px;
-            width: 80%;
-            max-width: 300px;
-        }
-        #result {
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-        #nextQuestionBtn {
-            display: none;
-        }
-        #quizStats {
-            margin-top: 1rem;
-            font-style: italic;
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
 <body>
-<%
-HttpSession session1 = request.getSession(false);
-if (session1 != null && session1.getAttribute("username") != null) {
-    String username = (String) session1.getAttribute("username");
-%>
     <div class="container">
-        <h1>Welcome, <%= username %>! 🌟</h1>
-        <p>Ready to challenge your knowledge? Let's dive into our interactive quiz!</p>
-        <button id="startQuizBtn" class="btn">Start Quiz</button>
-        <div id="quizContainer">
-            <h3 id="question"></h3>
-            <div id="options"></div>
-            <p id="result"></p>
-            <button id="nextQuestionBtn" class="btn">Next Question</button>
-            <p id="quizStats"></p>
-        </div>
-        <p>When you're done exploring, you can <a href="logout.jsp" class="btn">Logout</a> securely.</p>
+        <h1>Welcome to QuizMas</h1>
+        <p>Test your knowledge with our exciting quizzes! Are you ready to challenge yourself?</p>
+        <button class="start-button" onclick="startQuiz()">Start Quiz</button>
     </div>
 
     <script>
-        const quizData = [
-            {
-                question: "Who is the domain coordinator of ST domain",
-                options: ["rakesh sir", "Raj Kumar sir", "dean maam", "saneev sir"],
-                correct: 0
-            },
-            {
-                question: "dean of SOET",
-                options: ["sujata maam", "supriya maam", "dipti mam", "padhi sir"],
-                correct: 0
-            },
-            {
-                question: "Do Rakesh sir give us good marks?",
-                options: ["yes", "ofcourse", "not", "dekhte hain"],
-                correct: 3
-            }
-        ];
-
-        let currentQuestion = 0;
-        let score = 0;
-
-        const startQuizBtn = document.getElementById('startQuizBtn');
-        const quizContainer = document.getElementById('quizContainer');
-        const questionEl = document.getElementById('question');
-        const optionsEl = document.getElementById('options');
-        const resultEl = document.getElementById('result');
-        const nextQuestionBtn = document.getElementById('nextQuestionBtn');
-        const quizStats = document.getElementById('quizStats');
-
-        startQuizBtn.addEventListener('click', startQuiz);
-        nextQuestionBtn.addEventListener('click', loadNextQuestion);
-
         function startQuiz() {
-            startQuizBtn.style.display = 'none';
-            quizContainer.style.display = 'block';
-            loadQuestion();
-        }
-
-        function loadQuestion() {
-            const question = quizData[currentQuestion];
-            questionEl.textContent = question.question;
-            optionsEl.innerHTML = '';
-            question.options.forEach((option, index) => {
-                const button = document.createElement('button');
-                button.textContent = option;
-                button.classList.add('btn');
-                button.addEventListener('click', () => checkAnswer(index));
-                optionsEl.appendChild(button);
-            });
-            resultEl.textContent = '';
-            nextQuestionBtn.style.display = 'none';
-            updateQuizStats();
-        }
-
-        function checkAnswer(selectedIndex) {
-            const question = quizData[currentQuestion];
-            if (selectedIndex === question.correct) {
-                resultEl.textContent = "Correct! Well done!";
-                resultEl.style.color = "green";
-                score++;
-            } else {
-                resultEl.textContent = "Sorry, that's incorrect. The correct answer is: " + question.options[question.correct];
-                resultEl.style.color = "red";
-            }
-            Array.from(optionsEl.children).forEach(button => button.disabled = true);
-            nextQuestionBtn.style.display = 'inline-block';
-            updateQuizStats();
-        }
-
-        function loadNextQuestion() {
-            currentQuestion++;
-            if (currentQuestion < quizData.length) {
-                loadQuestion();
-            } else {
-                showFinalResult();
-            }
-        }
-
-        function showFinalResult() {
-            quizContainer.innerHTML = 
-                '<h3>Quiz Completed!</h3>' +
-                '<p>Your final score: ' + score + ' out of ' + quizData.length + '</p>' +
-                '<p>' + getFeedback() + '</p>' +
-                '<button onclick="location.reload()" class="btn">Restart Quiz</button>';
-        }
-
-        function getFeedback() {
-            const percentage = (score / quizData.length) * 100;
-            if (percentage === 100) return "Perfect score! You're a quiz master! 🏆";
-            if (percentage >= 80) return "Great job! You've got some serious knowledge! 🎉";
-            if (percentage >= 60) return "Good effort! Keep learning and you'll improve! 📚";
-            if (percentage >= 40) return "Not bad, but there's room for improvement. Keep studying! 💪";
-            return "Don't worry, everyone starts somewhere. Keep practicing! 🌱";
-        }
-
-        function updateQuizStats() {
-            quizStats.textContent = 'Question ' + (currentQuestion + 1) + ' of ' + quizData.length + ' | Score: ' + score;
+            // Add your logic here to start the quiz
+            alert("Starting the quiz!");
+            // You can redirect to the quiz page or load quiz questions dynamically
         }
     </script>
-<%
-} else {
-    response.sendRedirect("Login.jsp");
-}
-%>
 </body>
 </html>

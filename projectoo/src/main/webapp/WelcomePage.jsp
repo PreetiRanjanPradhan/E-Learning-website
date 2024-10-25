@@ -1,4 +1,4 @@
-/*CHANGED*/
+
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html lang="en">

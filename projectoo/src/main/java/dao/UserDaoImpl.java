@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import util.DBUtil;
+import dao.UserDaoImpl;
 
 public class UserDaoImpl implements UserDao {
     
@@ -61,6 +62,28 @@ public class UserDaoImpl implements UserDao {
 	            return false;
 	        }
 	}
+	
+	@Override
+	public User getUserByUsername(String username) {
+	    String query = "SELECT * FROM users WHERE username = ?";
+	    try (Connection connection = DBUtil.getConnection();
+	         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+	        preparedStatement.setString(1, username);
+	        ResultSet resultSet = preparedStatement.executeQuery();
+	        if (resultSet.next()) {
+	            User user = new User();
+	            user.setUsername(resultSet.getString("username"));
+	            user.setEmail(resultSet.getString("email"));
+	            user.setPassword(resultSet.getString("password"));
+	            user.setRecovery(resultSet.getString("recovery"));
+	            return user;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return null; // Return null if no user is found or an exception occurs
+	}
+
     
     
 }

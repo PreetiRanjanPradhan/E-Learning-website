@@ -32,7 +32,7 @@ public class Login_Servlet extends HttpServlet {
         if (userDao.isValidUser(username, password)) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
-            response.sendRedirect("WelcomePage.jsp");
+            response.sendRedirect("dashboard.jsp");
         } else {
         	response.sendRedirect("Login.jsp?error=1");
             System.out.println("Login failed: Invalid username or password");

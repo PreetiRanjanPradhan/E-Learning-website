@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
         <title>Register Page</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body class="register">
     <div class="register-container">

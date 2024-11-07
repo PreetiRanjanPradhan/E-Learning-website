@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz Maker</title>
+    <style>
+        .question-block {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .option-block {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+<form action="CreateQuiz" method="post" id="quizForm" onsubmit="return validateForm()">
+    <div>
+        <label for="quizName">Quiz Name:</label>
+        <input type="text" id="quizName" name="quizName" required>
+    </div>
+
+    <div id="questionsContainer">
+        <!-- Questions will be added here -->
+    </div>
+
+    <button type="button" onclick="addQuestion()">Add Question</button>
+    <button type="submit">Save Quiz</button>
+</form>
+
+<script>
+    let questionCount = 0;
+
+    function addQuestion() {
+        questionCount++;
+        console.log('Adding question', questionCount);
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'question-block';
+
+        questionDiv.innerHTML = `
+                <div>
+                    <label for="question${questionCount}">Question ${questionCount}:</label>
+                    <input type="text" class="form-input" name="question${questionCount}" required>
+                </div>
+                <div class="option-block">
+                    <input type="text" class="form-input" name="option1_${questionCount}" placeholder="Option 1" required>
+                    <input type="radio" name="correct${questionCount}" value="1" required> Correct
+                </div>
+                <div class="option-block">
+                    <input type="text" class="form-input" name="option2_${questionCount}" placeholder="Option 2" required>
+                    <input type="radio" name="correct${questionCount}" value="2"> Correct
+                </div>
+                <div class="option-block">
+                    <input type="text" class="form-input" name="option3_${questionCount}" placeholder="Option 3" required>
+                    <input type="radio" name="correct${questionCount}" value="3"> Correct
+                </div>
+                <div class="option-block">
+                    <input type="text" class="form-input" name="option4_${questionCount}" placeholder="Option 4" required>
+                    <input type="radio" name="correct${questionCount}" value="4"> Correct
+                </div>
+            `;
+        document.getElementById('questionsContainer').appendChild(questionDiv);
+
+        let countInput = document.getElementById('questionCountInput');
+        if (!countInput) {
+            countInput = document.createElement('input');
+            countInput.type = 'hidden';
+            countInput.id = 'questionCountInput';
+            countInput.name = 'questionCount';
+            document.getElementById('quizForm').appendChild(countInput);
+        }
+        countInput.value = questionCount;
+    }
+
+    function validateForm() {
+        console.log("Validating form...");
+        const formData = new FormData(document.getElementById('quizForm'));
+        const formValues = {};
+        for (let [key, value] of formData.entries()) {
+            formValues[key] = value;
+            console.log(`${key}: ${value}`);
+        }
+
+        for (let i = 1; i <= questionCount; i++) {
+            // validation of question filled or not
+            const questionText = document.querySelector(input[name="question${i}"]).value;
+            if (!questionText) {
+                alert(`Please enter question ${i}`);
+                return false;
+            }
+
+            //validation of options
+            for (let j = 1; j <= 4; j++) {
+                const optionText = document.querySelector(input[name="option${j}_${i}"]).value;
+                if (!optionText) {
+                    alert(`Please enter option ${j} for question ${i}`);
+                    return false;
+                }
+            }
+
+            //validation of correct answer
+            const correctAnswer = document.querySelector(`input[name="correct${i}"]:checked`);
+            if (!correctAnswer) {
+                alert(`Please select the correct answer for question ${i}`);
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    window.onload = function() {
+        addQuestion();
+    };
+</script>
+</body>
+</html>

@@ -4,11 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import util.DBUtil;
 
 public class UserDaoImpl implements UserDao {
     
-    @Override
+
     public boolean addUser(User user) {
         String query = "{CALL ADJ_Project.add_user(?, ?, ?, ?)}";
         try (Connection connection = DBUtil.getConnection();
@@ -32,7 +35,6 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    @Override
     public boolean isValidUser(String username, String password) {
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
         try (Connection connection = DBUtil.getConnection();
@@ -47,7 +49,6 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-	@Override
 	public boolean isRecoveryCorrect(String username, String recovery) {
 		String query = "SELECT * FROM users WHERE username = ? and recovery =?";
 		try (Connection connection = DBUtil.getConnection();
@@ -61,6 +62,43 @@ public class UserDaoImpl implements UserDao {
 	            return false;
 	        }
 	}
+	
+	public User getUserByUsername(String username) {
+	    String query = "SELECT * FROM users WHERE username = ?";
+	    try (Connection connection = DBUtil.getConnection();
+	         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+	        preparedStatement.setString(1, username);
+	        ResultSet resultSet = preparedStatement.executeQuery();
+	        if (resultSet.next()) {
+	            User user = new User();
+	            user.setUsername(resultSet.getString("username"));
+	            user.setEmail(resultSet.getString("email"));
+	            user.setPassword(resultSet.getString("password"));
+	            user.setRecovery(resultSet.getString("recovery"));
+	            return user;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return null; // Return null if no user is found or an exception occurs
+	}
+	
+	public List<String> getDistinctQuizNames() {
+		List<String> names = new ArrayList<>();
+        String query = "SELECT DISTINCT quiz_name FROM quizzes ORDER BY quiz_name";
+        
+        try (Connection connection = DBUtil.getConnection();
+   	         PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet rs = preparedStatement.executeQuery()) {
+            
+            while (rs.next()) {
+                names.add(rs.getString("quiz_name"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return names;
+    }
     
     
 }

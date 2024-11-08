@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
         <title>Register Page</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body class="register">
     <div class="register-container">
         <h1>Create an Account</h1>
-        <form action="Register_Servlet" method="post">
+        <form action="RegisterServ" method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
 

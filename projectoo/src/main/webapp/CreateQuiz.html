@@ -3,14 +3,174 @@
 <head>
     <title>Quiz Maker</title>
     <style>
-        .question-block {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
+        /* Modern CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #e0f7ff 0%, #b3e5fc 100%);
+            padding: 2rem;
+            color: #333;
+        }
+
+        /* Container Styles */
+        #quizForm {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Quiz Name Input Styling */
+        #quizName {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            background: #e0f2f1;
+            border: 2px solid #81d4fa;
+            border-radius: 10px;
+            color: #333;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        #quizName:focus {
+            outline: none;
+            border-color: #0288d1;
+            box-shadow: 0 0 15px rgba(2, 136, 209, 0.2);
+        }
+
+        /* Question Block Styling */
+        .question-block {
+            background: #e0f7fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.5s ease forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Form Input Styling */
+        .form-input {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: #ffffff;
+            border: 1px solid #81d4fa;
+            border-radius: 8px;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #0288d1;
+            box-shadow: 0 0 10px rgba(2, 136, 209, 0.2);
+        }
+
+        /* Option Block Styling */
         .option-block {
-            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 0.8rem 0;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .option-block:hover {
+            background: #b3e5fc;
+        }
+
+        /* Radio Button Styling */
+        input[type="radio"] {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        input[type="radio"]::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #81d4fa;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        input[type="radio"]:checked::before {
+            border-color: #0288d1;
+            background: #0288d1;
+            animation: pulse 0.5s ease;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Button Styling */
+        button {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1rem 1rem 1rem 0;
+            background: #0288d1;
+            color: white;
+            border: 2px solid #0277bd;
+        }
+
+        button:hover {
+            background: #0277bd;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Label Styling */
+        label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: block;
+            color: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            #quizForm {
+                padding: 1rem;
+            }
+
+            button {
+                width: 100%;
+                margin: 0.5rem 0;
+            }
         }
     </style>
 </head>

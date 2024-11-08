@@ -1,0 +1,166 @@
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* Quiz Details Section */
+h1 {
+    color: #1a73e8;
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Take Quiz Button */
+button[type="submit"] {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 24px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+button[type="submit"]:hover {
+    background-color: #1557b0;
+    transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Leaderboard Container */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+}
+
+th {
+    background-color: #1a73e8;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+th:first-child {
+    border-top-left-radius: 8px;
+}
+
+th:last-child {
+    border-top-right-radius: 8px;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Rank Column Styles */
+.rank {
+    font-weight: bold;
+    width: 80px;
+}
+
+.medal {
+    font-size: 24px;
+}
+
+/* Time Column Style */
+.time {
+    color: #666;
+    font-family: monospace;
+    font-size: 1.1rem;
+}
+
+/* No Data Message */
+.no-data {
+    text-align: center;
+    padding: 30px;
+    color: #666;
+    font-style: italic;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 15px;
+        margin: 20px auto;
+    }
+    
+    table {
+        font-size: 0.9rem;
+    }
+    
+    td, th {
+        padding: 10px;
+    }
+    
+    .medal {
+        font-size: 20px;
+    }
+}
+
+/* Animation for new entries */
+@keyframes highlightNew {
+    from {
+        background-color: #e3f2fd;
+    }
+    to {
+        background-color: transparent;
+    }
+}
+
+tr:first-child {
+    animation: highlightNew 2s ease-out;
+}
+
+/* Quiz Details Emphasis */
+p strong {
+    color: #1a73e8;
+    font-weight: 600;
+}
